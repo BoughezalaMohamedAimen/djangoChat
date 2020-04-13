@@ -1,0 +1,86 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block styles %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+<!-- Latest compiled and minified JavaScript -->
+
+{% endblock styles %}
+
+
+
+{%block body%}
+{% include 'accounts/filters.html' %}
+
+
+<div class="container pt-4">
+  <div class="row pt-4">
+    {% for profile in profiles %}
+    <div class="col-12 col-md-4 border-bottom pb-4">
+      <div class="container">
+        <!-- <div class="cover h-220" style='background: url({{profile.image.url}});'>
+        </div> -->
+        <img src="{{profile.image.url}}" alt="" class="img-fluid">
+          <h4 class='text-night'><a href="{%url 'other_profile' profile.user.username%}">{{profile.user.username}}</a></h4>
+          <h5><span class="text-night d-inline-block rotate-90"> <i class="fa fa-phone"></i> </span> {{profile.telephone}}</h5>
+          <h5><span class="text-night"> <i class="fas fa-map-signs"></i> </span> {{profile.adresse}} </h5>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="pagination py-4">
+      <span class="step-links">
+          {% if profiles.has_previous %}
+              <a href="?page=1" class='btn bg-day text-white paginator'>1</a>
+              <a href="?page={{ profiles.previous_page_number }}" class='btn bg-day text-white paginator'> < </a>
+          {% endif %}
+
+          <span class="current">
+              Page {{ profiles.number }} sur {{ profiles.paginator.num_pages }}.
+          </span>
+          {% if profiles.has_next %}
+             <a href="?page={{ profiles.next_page_number }}" class='btn bg-day text-white paginator'> > </a>
+             <a href="?page={{ profiles.paginator.num_pages }}" class='btn bg-day text-white paginator'>{{ profiles.paginator.num_pages }}</a>
+         {% endif %}
+     </span>
+ </div>
+</div>
+
+{%endblock body%}
+
+
+
+{% block scripts %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+
+<script>
+  $(document).ready(function(){
+
+
+    //////////////////////////////////filters
+        $('.submit').click(function(){
+          var data=''
+          $('.filterr').each(function(){
+              if($(this).val()!='')
+              data+=$(this).attr('name')+'='+$(this).val()+'&'
+          })
+          window.location.assign('?'+data)
+        })
+
+        function findGetParameter(parameterName) {
+            var result = null,
+                tmp = [];
+            var items = location.search.substr(1).split("&");
+            for (var index = 0; index < items.length; index++) {
+                tmp = items[index].split("=");
+                if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+            }
+            return result;
+        }
+
+
+  })
+</script>
+{% endblock scripts %}

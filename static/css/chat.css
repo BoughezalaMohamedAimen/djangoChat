@@ -1,0 +1,96 @@
+.discussion-toggle
+{
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  border-radius: 50%;
+}
+
+.discussion-toggle i
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
+.user-profile-min
+{
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.users-container
+{
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  -webkit-transition: .3s all;
+  -o-transition: .3s all;
+  transition: .3s all;
+}
+.users-container.show
+{
+  bottom: 0;
+  right: 0;
+  width: 20vw;
+  height: 100vh;
+  overflow: scroll;
+  z-index: 10;
+}
+.discussion-users-list
+{
+  max-height: 60vh;
+  overflow-y: scroll;
+}
+.discussions-container
+{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 40vh;
+  width: 100%;
+}
+.chat-result
+{
+  height: 27vh;
+  overflow-y: scroll;
+}
+.selected-user
+{
+  background: indigo !important;
+  color: white !important;
+  border-radius: 15px;
+}
+
+.message-count
+{
+  /* min-width: 25px;
+  min-height: 25px; */
+  border-radius: 7px;
+  background: darkred;
+  color:white;
+  position: relative;
+  display: inline-block;
+  font-size: 14px
+}
+.user-message
+{
+  font-size: 13px;
+  background: #e8e8e8;
+  display: inline-block;
+  padding: 3px;
+  border-radius: 7px 2px 7px 2px;
+}
+.discus-user
+{
+  color:indigo
+}

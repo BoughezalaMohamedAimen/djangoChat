@@ -1,0 +1,50 @@
+{% extends 'base.html'%}
+{%block title%} Login {%endblock title%}
+
+{% load accounts_extras %}
+
+{% load static %}
+
+{%block body%}
+<section>
+  <div class="container">
+    <div class="col-md-3  shadow  pb-4  py-3 center">
+
+
+
+      <form method="post">
+        {% csrf_token %}
+        <div class="container">
+          <div class="col-md-10 offset-md-1">
+            <img src="{%static '/img/Black.png'%}" alt="" class='img-fluid'>
+            <div class="pb-2">
+              <label for="" class='text-secondary'>E-mail:</label>
+
+                {{ form.username|add_class:"form-control" }}
+
+
+
+            </div>
+            <div class="pb-2">
+              <label for="" class='text-secondary'>Mot de Passe:</label>
+              {{ form.password|add_class:"form-control" }}
+            </div>
+
+            <div class="py-1"><small class="text-danger">{{form.non_field_errors | safe}}</small></div>
+            {% if 'compte' in form.non_field_errors.as_text  %}
+            <a class='text-light font-weight-light' href="{% url 'activate_account_form' %}">Activer mon compte</a>
+            {%endif%}
+            <div class="text-center py-3">
+              <button type="submit" class="btn btn-day-outline">Connexion</button>
+            </div>
+            <a class='text-day font-weight-light' href="{% url 'password_reset'%}"> Mot de passe oublié ? </a>
+          </div>
+
+
+        </div>
+      </form>
+    </div>
+  </div>
+
+</section>
+ {%endblock body%}

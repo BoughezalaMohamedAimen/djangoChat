@@ -7,6 +7,7 @@ class Messag(models.Model):
     senderr=models.ForeignKey(User,on_delete=models.CASCADE,related_name="message_from")
     reciverr=models.ForeignKey(User,on_delete=models.CASCADE,related_name="message_to")
     message=models.CharField(max_length=255)
+    vu=models.BooleanField(default=False)
 
     def message_from(self):
         return self.senderr
@@ -29,7 +30,8 @@ import json
 def achat_item_handler(sender, **kwargs):
     to_send=json.dumps({
     'username':kwargs['instance'].senderr.username,
-    'usermsg':kwargs['instance'].message
+    'usermsg':kwargs['instance'].message,
+    'userid':kwargs['instance'].senderr.id,
     })
     channel_layer = get_channel_layer()
     async_to_sync(channel_layer.group_send)(

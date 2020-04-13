@@ -1,0 +1,40 @@
+{% load static %}
+{% load accounts_extras %}
+
+
+<div class="discussion-toggle text-night shadow border">
+  <i class="fa fa-users"></i>
+</div>
+
+<div class="users-container bg-white border-left">
+  <div class="discussion-users-list">
+    <div class="py-2 bg-light  border-bottom close-panel">
+      <h4 class="text-secondary text-center"><i class="fa fa-users"></i></h4>
+    </div>
+    {% for u in users %}
+    <div class="border-bottom mb-2 py-1 user text-secondary pl-3" data-user='{{u.id}}'>
+      <img src="{%if user.userprofile.image%}{{user.userprofile.image.url}}{%else%}{% static 'img/profile.jpeg'%}{%endif%}" class="user-profile-min">
+      <span class="">
+        {{u.username}}
+        {% get_unread request.user.userprofile u as msglen %}
+        {% if msglen > 0 %}
+         <span class="message-count px-1"> {{ msglen }}</span>
+         {% endif %}
+      </span>
+    </div>
+    {%endfor%}
+  </div>
+  <div class="discussions-container border-top shadow">
+    <div class="container px-3 chat-result shadow py-1 border"></div>
+    <form class="container shadow  py-3 border message-form">
+      <div class="row">
+        <div class="col-9 col-md-10">
+          <input type="text" class="form-control" id="chat-message" disabled>
+        </div>
+        <div class="col-3 position-relative col-md-2" >
+            <button  type="submit" class="center text-dark send-message border-0"> <i class="fas fa-paper-plane"></i> </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+{% extends 'base.html'%}
+{% block title%} Profil {% endblock title%}
+
+{% load static %}
+{% block body%}
+<section>
+    <div class="couverture"></div>
+    <div class="bg-white pt-1"></div>
+  <div class="container-fluid">
+    <div class="container">
+      <div class="row py-3">
+        <div class="col-md-4">
+          <img src="{{profile.userprofile.image.url}}" alt="" class="img-fluid">
+        </div>
+        <div class="col-md-8">
+          <div class="container border p-2">
+            <h4><span class='text-night'> <i class="fa fa-user-circle"></i> </span> Agence: &nbsp; <span class='text-night'>{{profile.userprofile.user.username}}</span></h4>
+            <h4><span class='text-night'> <i class="fas fa-map-signs"></i> </span> {{profile.userprofile.adresse}} {{profile.userprofile.wilaya}} {{profile.userprofile.ville}}</h4>
+            <h4><span class='text-night d-inline-block rotate-90' > <i class="fa fa-phone"></i> </span> {{profile.userprofile.telephone}}</h4>
+            <h4><span class='text-night d-inline-block' > <i class="fa fa-fax"></i> </span> {{profile.userprofile.fax}}</h4>
+              <hr>
+              {% if profile.userprofile.maps%}
+              <iframe src="{{profile.userprofile.maps|safe}}" width="100%" height="200" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+              {%endif%}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container py-4  shadow-lg my-2 border-radius-30">
+      <h1 class="hand-font">  Annonces:</h1>
+      <div class="row py-3">
+        <div class="col-md-1"></div>
+
+
+        <div class="col-md-3 text-center">
+
+            <img src="{% static '/img/voiture.png' %}" alt="" class='img-fluid'>
+
+          <h5 class="font-weight-light text-center text-day my-2"><a href="{% url 'annonces_acceuil'%}?mot_cle={{profile.username}}">({{profile.annonce_set.count}}) Voitures</a></h5>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+    </div>
+  </div>
+  </section>
+{% endblock body%}

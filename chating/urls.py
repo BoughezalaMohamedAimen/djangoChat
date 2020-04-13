@@ -14,13 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,re_path,include
 from django.conf import settings
 from django.conf.urls.static import static
 from chat.views import HomeChat
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',HomeChat,name="chat"),
+    path('',HomeChat.as_view(),name="chat"),
+    re_path(r'^accounts/',include('accounts.urls')),
+    re_path(r'^chat/',include('chat.urls'))
 ]+  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 admin.site.site_header='Administration du Site'

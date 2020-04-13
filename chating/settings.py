@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'chat',
+    'accounts',
     'channels',
 
 ]
@@ -72,7 +73,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'chating.wsgi.application'
 
-#   FOR developement SERVER 
+#   FOR developement SERVER
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels.layers.InMemoryChannelLayer"

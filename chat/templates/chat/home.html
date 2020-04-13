@@ -1,41 +1,23 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block body %}
 
+
+{% block styles %}
+
+{% endblock styles %}
+
+{% block body %}
+{% include 'chat/lateral.html' %}
 <h1 class="display-4 text-center text-white bg-dark"> Chat APP</h1>
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 offset-md-2">
-      <div class="container chat-result shadow py-5 border mt-5"></div>
-      <div class="container shadow mt-4 py-3 border">
-        <div class="row">
-          <div class="col-md">
-            <input type="text" class="form-control" id="chat-message">
-          </div>
-          <div class="col-md-2">
-            <a  class="btn btn-primary text-white send-message"> Send</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3 border-left">
-      <div class="py-2 text-white bg-info">
-        <h4 class="text-center">USERS</h4>
-      </div>
-      {% for u in users %}
-      <div class="border-bottom mb-2 py-3 user text-secondary pl-3" data-user='{{u.id}}'>
-        <span class="">
-          {{u.username}}
-        </span>
-      </div>
-      {%endfor%}
-    </div>
-  </div>
-</div>
+
 
 {% endblock body %}
 
 
+
+
 {% block scripts %}
+<script src='https://cdn.rawgit.com/admsev/jquery-play-sound/master/jquery.playSound.js'></script>
 <script src="{% static 'js/websocket.js'%}"></script>
+<script src="{% static 'js/get_discussion.js'%}"></script>
 {% endblock scripts %}
